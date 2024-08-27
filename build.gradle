@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id "org.flywaydb.flyway" version "9.2.0"
+    id 'application'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+dependencies {
+    implementation 'org.hibernate:hibernate-core:5.6.15.Final'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    implementation 'com.h2database:h2:2.1.214'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.flywaydb:flyway-core:9.2.0'
+    // Додавання Mockito
+    testImplementation 'org.mockito:mockito-core:5.5.0'
+    // Якщо використовуєте JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+
+    // SLF4J API
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.9'
+
+
+}
+
+// Налаштування для JUnit 5
+test {
+    useJUnitPlatform()
+}
+
+application {
+    mainClassName = 'org.example.Main'
+}
+
+test {
+    useJUnitPlatform()
+}
+apply plugin: "org.flywaydb.flyway"
+
+flyway {
+    url = 'jdbc:h2:~/hibernate'
+    user = 'Raisa'
+    password = ''
+    locations = ['classpath:db/migration']
+}

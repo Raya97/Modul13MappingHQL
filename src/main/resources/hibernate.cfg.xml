@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!-- Root element of Hibernate configuration -->
+<hibernate-configuration>
+  <!-- SessionFactory configuration: defines properties and mappings for the Hibernate session factory -->
+  <session-factory>
+    <!-- Database connection URL, pointing to the H2 database -->
+    <property name="hibernate.connection.url">jdbc:h2:~/hibernate</property>
+    <!-- JDBC driver class for H2 database -->
+    <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+    <!-- Username for connecting to the database -->
+    <property name="hibernate.connection.username">Raisa</property>
+    <!-- Password for connecting to the database (left empty in this case) -->
+    <property name="hibernate.connection.password"></property>
+
+    <!-- Character encoding for the database connection -->
+    <property name="hibernate.connection.characterEncoding">utf8</property>
+
+    <!-- Property to display SQL statements in the console for debugging -->
+    <property name="hibernate.show_sql">true</property>
+
+    <!-- Property to format SQL statements in the console for better readability -->
+    <property name="hibernate.format_sql">true</property>
+
+    <!-- Specifies the SQL dialect Hibernate should use for the H2 database -->
+    <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+
+    <!-- Automatically updates the database schema based on the entity mappings -->
+    <property name="hibernate.hbm2ddl.auto">update</property>
+
+    <!-- Entity class mappings, linking Hibernate to the Java classes representing database tables -->
+    <mapping class="org.example.entity.Client"/>
+    <mapping class="org.example.entity.Planet"/>
+    <mapping class="org.example.entity.Ticket"/>
+  </session-factory>
+</hibernate-configuration>
